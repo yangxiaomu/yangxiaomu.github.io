@@ -1,0 +1,44 @@
+---
+title: Timeline
+layout: default
+weight: 2
+description: keep hungry keep foolish
+header-img: "img/tag-bg.jpg"
+---
+
+<!-- Page Header -->
+{% include intro-header.html type='page' short=true %}
+
+<!-- Main Content -->
+<div class="container">
+	<div class="row">
+		<div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+            <!--这里的样式为了和tag.html一致，所以用了tag的样式-->
+            <div class="one-tag-list">
+                
+                    <!--时间线-->
+                    <!-- <ul> -->
+                    {% for post in site.posts %}
+                        {% unless post.next %}
+                        <h2 style="color: #0085a1;">{{ post.date | date: '%Y年' }}</h2>
+                        {% else %}
+                        {% capture year %}{{ post.date | date: '%Y' }}{% endcapture %}
+                        {% capture nyear %}{{ post.next.date | date: '%Y' }}{% endcapture %}
+                        {% if year != nyear %}
+                            <h2 style="color: #0085a1;">{{ post.date | date: '%Y年' }}</h2>
+                        {% endif %}
+                        {% endunless %}
+                    	<div class="post-preview" style="display: flex;" >
+							<div class="post-meta" style="font-style:italic;font-size:16px;display:contents">{{ post.date | date:"%Y-%m-%d " }}</div>
+							<a href="{{ post.url }}" style="display: flex;margin-left: 20px;color: #0085a1">
+								<div class="post-title" style="line-height:1;font-size:18px;margin-top: auto;margin-bottom: auto;">{{ post.title }}</div>
+							</a>
+                    	</div>
+                    {% endfor %}
+                    <!-- </ul> -->
+                    <!--时间线结束-->
+                
+            </div>
+        </div>
+	</div>
+</div>
